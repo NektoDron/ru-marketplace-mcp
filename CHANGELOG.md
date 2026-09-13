@@ -7,7 +7,18 @@
 Русский текст первый, английский — ниже в каждом разделе. Аудитория проекта
 русскоязычная, и переводить для неё собственные заметки о релизе странно.
 
-## [Unreleased]
+## [2.3.0] - 2026-09-13
+
+- `compare_browser_snapshot(handoff_id)` exposes the retained browser viewport as
+  standard MCP image content for native-vision clients. The handle is bound to the
+  MCP session and lease expiry; no OCR or external vision service is invoked.
+- DSH profile selection is mutually exclusive (`full > decision > compare`), and
+  the stored wire baselines cover all three profiles.
+- Offer verification now selects the requested WB row, unwraps Detsky Mir cards,
+  checks Ozon's regular price, and can require the Yandex search-row `sku_id`
+  before comparing a card price. Seller article fields remain non-MPN evidence.
+- WB preserves unambiguous typed color evidence. MPN/GTIN remain `unknown` when
+  the source does not provide manufacturer identifiers.
 
 ### Browser recovery
 
@@ -84,6 +95,16 @@
 - Добавлена датированная матрица model-level routing с отдельной проверкой
   text/structured capability и явной оговоркой, что one-shot probe не является
   универсальным рейтингом моделей.
+- Яндекс Маркет: «полая» страница товара (HTTP 200, `pageId market:product`,
+  все товарные коллекции пусты, нет Product ld+json) классифицируется как
+  `empty_product_shell` → retryable `transport_down` у `yandex_card` и
+  `inconclusive` у selfcheck, а не `parser_drift`. Причина живая: ~12–13.09
+  Яндекс перевёл товарные данные поиска и карточек из SSR-состояния в
+  клиентскую ленивую загрузку — знакомые семейства полей не изменили форму,
+  они отсутствуют в отдаче, а по тристейт-доктрине это сервинг/сессия, не
+  парсер. Search-канарейка больше не считает выдачу через ld+json-fallback
+  (`ok_ldjson_only`) здоровой: probe-id для карточной проверки из такой
+  выдачи ненадёжен.
 
 ### Fixed
 
@@ -97,6 +118,16 @@
   profile, so switching profiles cannot reuse the previous address identifier.
 - Added a dated model-level routing matrix with separate text/structured
   capability checks; the one-shot probe is explicitly not a universal model ranking.
+- Yandex Market: a hollow product page (HTTP 200, `pageId market:product`,
+  every product collection empty, no Product ld+json) is now classified as
+  `empty_product_shell` — a retryable `transport_down` from `yandex_card` and
+  `inconclusive` in the selfcheck, not `parser_drift`. Live cause: around
+  Sep 12–13 Yandex moved search/card product data from the SSR state into
+  client-side lazy loading — the familiar field families did not change
+  shape, they are absent from the served page, which the tri-state doctrine
+  classes as serving/session, not the parser. The search canary no longer
+  treats an ld+json-fallback extraction (`ok_ldjson_only`) as healthy: a
+  card-probe id taken from such a page is unreliable.
 
 ## [2.2.0] — 2026-09-11
 

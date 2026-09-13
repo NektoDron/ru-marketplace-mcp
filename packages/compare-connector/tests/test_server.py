@@ -53,7 +53,7 @@ async def test_registered_tools_are_stable():
 async def test_compare_verify_offer_dispatches_to_source_card(monkeypatch):
     class FakeCard:
         async def __call__(self, *, nm_ids):
-            return {"nm_ids": nm_ids, "price_rub": 1234}
+            return {"items": [{"nm_id": nm_ids[0], "price_rub": 1234}]}
 
     class FakeSource:
         wb_card = FakeCard()
@@ -65,7 +65,7 @@ async def test_compare_verify_offer_dispatches_to_source_card(monkeypatch):
     )
 
     assert result["source"] == "wildberries"
-    assert result["card"]["nm_ids"] == [123]
+    assert result["card"]["items"][0]["nm_id"] == 123
     assert result["price_verification"]["matches"] is True
 
 
@@ -322,6 +322,41 @@ async def test_a_missing_connector_is_distinguished_from_a_block(monkeypatch):
     outcomes = {o.source: o for o in result.source_outcomes}
     assert outcomes["ozon"].status == "not_installed"
     assert result.complete is False
+
+
+async def test_degraded_yandex_rows_never_rank_with_a_subscription_price(monkeypatch):
+    """A Plus price must not masquerade as the everyday price in the ranking.
+
+    Live fact 2026-09-13: with the SSR widget state gone, yandex_search answers
+    through its schema.org fallback, whose offers.price is the Plus subscriber
+    price (Realme Note 60x: ld+json 11102 == the yaBank additional price, while
+    the everyday price was 11329 and the base 12450). Such rows carry
+    price_rub=None and may only ride in price_with_subscription_rub, keeping
+    the offer unranked instead of letting a subscription price win.
+    """
+
+    async def degraded_yandex(query, limit):
+        return [
+            offer(
+                "yandex_market",
+                None,
+                title="Смартфон Realme Note 60х 4/128GB Зеленый",
+                product_id="4315891968",
+                variant_id="103796664836",
+                price_with_subscription_rub=11102.0,
+            )
+        ]
+
+    stub_sources(monkeypatch, {"yandex_market": degraded_yandex})
+
+    result = await server.compare_prices(query="телефон", sources=["yandex_market"])
+
+    assert result.cheapest is None
+    assert result.total_offers == 1
+    row = result.offers[0]
+    assert row.price_rub is None
+    assert row.price_with_subscription_rub == 11102.0
+    assert any("no_prices" in warning for warning in result.warnings)
 
 
 async def test_sources_run_concurrently(monkeypatch):

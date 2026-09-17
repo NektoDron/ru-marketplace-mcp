@@ -849,10 +849,10 @@ async def _run_source(name: str, query: str, limit: int) -> tuple[SourceOutcome,
     name="compare_prices",
     annotations=ToolAnnotations(
         title="Compare Prices Across Russian Marketplaces",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def compare_prices(
@@ -1079,10 +1079,10 @@ def _numeric_card_id(source: str, value: str) -> int:
     name="compare_verify_offer",
     annotations=ToolAnnotations(
         title="Verify Compared Offer",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def compare_verify_offer(
@@ -1236,10 +1236,10 @@ async def compare_verify_offer(
     name="compare_sources",
     annotations=ToolAnnotations(
         title="List Available Marketplaces",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=False,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=False,
     ),
 )
 async def compare_sources(ctx: Context | None = None) -> dict[str, Any]:
@@ -1303,10 +1303,10 @@ async def compare_sources(ctx: Context | None = None) -> dict[str, Any]:
     name="compare_browser_snapshot",
     annotations=ToolAnnotations(
         title="View a Retained Marketplace Page",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=False,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=False,
+        open_world_hint=True,
     ),
 )
 async def compare_browser_snapshot(
@@ -1351,7 +1351,7 @@ async def compare_browser_snapshot(
         return ToolResult(
             content=[
                 TextContent(type="text", text=json.dumps(snapshot, ensure_ascii=False)),
-                ImageContent(type="image", data=image_data, mimeType=snapshot["mime_type"]),
+                ImageContent(type="image", data=image_data, mime_type=snapshot["mime_type"]),
             ],
             structured_content=snapshot,
         )

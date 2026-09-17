@@ -573,7 +573,7 @@ def _page_challenge_kind(data: dict[str, Any]) -> str | None:
 @mcp.tool(
     name="taobao_search",
     annotations=ToolAnnotations(
-        title="Taobao Search", readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+        title="Taobao Search", read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
     ),
 )
 async def taobao_search(
@@ -667,7 +667,7 @@ async def taobao_search(
 @mcp.tool(
     name="taobao_card",
     annotations=ToolAnnotations(
-        title="Taobao Item Card", readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+        title="Taobao Item Card", read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
     ),
 )
 async def taobao_card(

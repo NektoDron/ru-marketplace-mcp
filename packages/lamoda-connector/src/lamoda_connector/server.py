@@ -383,7 +383,7 @@ async def _cdp_render_search(query: str, ctx: Context | None) -> dict[str, Any]:
 @mcp.tool(
     name="lamoda_search",
     annotations=ToolAnnotations(
-        title="Lamoda Search", readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+        title="Lamoda Search", read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
     ),
 )
 async def lamoda_search(
@@ -443,7 +443,7 @@ async def lamoda_search(
 @mcp.tool(
     name="lamoda_card",
     annotations=ToolAnnotations(
-        title="Lamoda Product Card", readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+        title="Lamoda Product Card", read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
     ),
 )
 async def lamoda_card(

@@ -522,10 +522,10 @@ def _card_products(data: dict[str, Any]) -> list[Any]:
     name="wb_card",
     annotations=ToolAnnotations(
         title="WB Product Cards",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_card(
@@ -661,10 +661,10 @@ async def wb_card(
     name="wb_root_info",
     annotations=ToolAnnotations(
         title="WB Root Info (imt_id)",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_root_info(
@@ -813,10 +813,10 @@ def _wb_review_date_ts(created: object) -> float:
     name="wb_reviews",
     annotations=ToolAnnotations(
         title="WB Reviews by imt_id",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_reviews(
@@ -1002,10 +1002,10 @@ async def wb_reviews(
     name="wb_questions",
     annotations=ToolAnnotations(
         title="WB Buyer Questions by imt_id",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_questions(
@@ -1220,10 +1220,10 @@ async def wb_questions(
     name="wb_search",
     annotations=ToolAnnotations(
         title="WB Catalog Search",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_search(
@@ -1595,10 +1595,10 @@ async def _search_via_search_goods(
     name="wb_seller",
     annotations=ToolAnnotations(
         title="WB Seller Legal Info",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_seller(
@@ -1739,10 +1739,10 @@ def _find_menu_subtree(nodes: list[Any], needle: str) -> dict | None:
     name="wb_categories",
     annotations=ToolAnnotations(
         title="WB Catalog Categories",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_categories(
@@ -1849,10 +1849,10 @@ async def wb_categories(
     name="wb_category_products",
     annotations=ToolAnnotations(
         title="WB Category Product Listing",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def wb_category_products(

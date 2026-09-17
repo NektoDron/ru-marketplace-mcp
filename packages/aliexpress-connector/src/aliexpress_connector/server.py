@@ -511,7 +511,7 @@ def _card_prices(payload: dict[str, Any]) -> tuple[float | None, float | None]:
 @mcp.tool(
     name="aliexpress_search",
     annotations=ToolAnnotations(
-        title="AliExpress Search", readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+        title="AliExpress Search", read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
     ),
 )
 async def aliexpress_search(
@@ -593,10 +593,10 @@ async def aliexpress_search(
     name="aliexpress_card",
     annotations=ToolAnnotations(
         title="AliExpress Product Card",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def aliexpress_card(

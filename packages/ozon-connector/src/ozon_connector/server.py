@@ -614,10 +614,10 @@ def _search_tile_product_link(link: str) -> tuple[str, str] | None:
     name="ozon_card",
     annotations=ToolAnnotations(
         title="Ozon Product Card",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def ozon_card(
@@ -790,10 +790,10 @@ def _parse_review_item(r: dict) -> dict[str, Any]:
     name="ozon_reviews",
     annotations=ToolAnnotations(
         title="Ozon Product Reviews",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def ozon_reviews(
@@ -1261,10 +1261,10 @@ def _aggregate_offer_warnings(items: list[dict]) -> list[str]:
     name="ozon_search",
     annotations=ToolAnnotations(
         title="Ozon Catalog Search",
-        readOnlyHint=True,
-        destructiveHint=False,
-        idempotentHint=True,
-        openWorldHint=True,
+        read_only_hint=True,
+        destructive_hint=False,
+        idempotent_hint=True,
+        open_world_hint=True,
     ),
 )
 async def ozon_search(

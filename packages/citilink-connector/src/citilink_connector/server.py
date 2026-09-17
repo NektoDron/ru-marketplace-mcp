@@ -313,7 +313,7 @@ def _is_qrator_wall(data: dict[str, Any]) -> bool:
 @mcp.tool(
     name="citilink_search",
     annotations=ToolAnnotations(
-        title="Citilink Search", readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+        title="Citilink Search", read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
     ),
 )
 async def citilink_search(
@@ -374,7 +374,7 @@ async def citilink_search(
 @mcp.tool(
     name="citilink_card",
     annotations=ToolAnnotations(
-        title="Citilink Product Card", readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+        title="Citilink Product Card", read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=True
     ),
 )
 async def citilink_card(
